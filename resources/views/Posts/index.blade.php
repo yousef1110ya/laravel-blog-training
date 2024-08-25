@@ -1,68 +1,36 @@
-<!doctype html>
-<html lang="en">
+@extends('layouts.app')
+@section('container')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>codezilla blog</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">MY BLOG</a>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">All Posts</a>
-                    </li>
-
-                </ul>
-
-            </div>
-        </div>
-    </nav>
-    <div class="container mt-3">
-        <div class="text-center">
-            <button type="button" class="btn btn-success">create Post</button>
-        </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Posted by</th>
-                    <th scope="col">Created at</th>
-                    <th scope="col">actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($posts as $post)
-                    <tr>
-                        <th scope="row">{{ $post['id'] }}</th>
-                        <td>{{ $post['title'] }}</td>
-                        <td>{{ $post['posted_by'] }}</td>
-                        <td>{{ $post['created_at'] }}</td>
-                        <td>
-                            <button type="button" class="btn btn-primary">view</button>
-                            <button type="button" class="btn btn-secondary">Edit</button>
-                            <button type="button" class="btn btn-success">Delete</button>
-                        </td>
-                    </tr>
-                @endforeach
-
-            </tbody>
-        </table>
+<div class="container mt-3">
+    <div class="text-center">
+        <a href="{{route('posts.create')}}" class="btn btn-success">create Post</a>
     </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Posted by</th>
+                <th scope="col">Created at</th>
+                <th scope="col">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($posts as $post)
+                <tr>
+                    <th scope="row">{{ $post['id'] }}</th>
+                    <td>{{ $post['title'] }}</td>
+                    <td>{{ $post['posted_by'] }}</td>
+                    <td>{{ $post['created_at'] }}</td>
+                    <td>
+                        <a type="button" class="btn btn-primary" href="{{route('posts.show', $post['id'])}}">view</a>
+                        <a type="button" class="btn btn-secondary">Edit</a>
+                        <a type="button" class="btn btn-success">Delete</a>
+                    </td>
+                </tr>
+            @endforeach
 
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
-</body>
-
-</html>
+        </tbody>
+    </table>
+</div>
+@endsection
