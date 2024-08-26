@@ -33,9 +33,26 @@ class PostController extends Controller
     {
         return view('posts.create');
     }
+    public function edit()
+    {
+        $singlePost = [
+            'id' => 1,
+            'title' => 'php',
+            'discreption' => 'php is a real fun language',
+            'posted_by' => 'ahmad',
+            'user-Email' => 'ahmad@gmail.com',
+            'created_at' => '2022-10-10 9:00:00'
+        ];
+        return view('posts.Edit' ,['post' => $singlePost]);
+    }
+    public function update()
+    {
+        return 'we edited the post';
+    }
 
     public function store()
     {
+        $data = request()->all();
         return to_route('posts.index');
     }
 }

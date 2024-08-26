@@ -16,7 +16,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('posts.store') }}">
+    <form method="POST" action="{{ route('posts.update', $post['id']) }}">
         @csrf
         <div class="mb-3">
             <label class="form-label">Title</label>
@@ -34,7 +34,7 @@
             </select>
         </div>
 
-        <button class="btn btn-success">Submit</button>
+        <button class="btn btn-success">Update</button>
     </form>
 
 
